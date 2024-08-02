@@ -35,9 +35,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{49772457-be2f-48fe-9869-20354501fb71}</ProjectGuid>
+    <ProjectGuid>{e4b086fb-fba1-43ed-8207-6f90dd2da6eb}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>P1045</RootNamespace>
+    <RootNamespace>P1022</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
