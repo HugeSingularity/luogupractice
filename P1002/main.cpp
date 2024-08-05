@@ -1,40 +1,35 @@
 ﻿#include <cstdio>
 
-struct Place
-{
-    int x = 0, y = 0;
-};
-
-Place soldier, horse, goal;
-int ans;
-
-void dfs()
-{
-    if (soldier.x == goal.x && soldier.y == goal.y)
-    {
-        ans++;
-        return;
-    }
-    if ((soldier.x == horse.x + 1 && soldier.y == horse.y + 2) || (soldier.x == horse.x + 2 && soldier.y == horse.y + 1) || (soldier.x == horse.x + 2 && soldier.y == horse.y - 1) || (soldier.x == horse.x + 1 && soldier.y == horse.y - 2) || (soldier.x == horse.x - 1 && soldier.y == horse.y - 2) || (soldier.x == horse.x - 2 && soldier.y == horse.y - 1) || (soldier.x == horse.x - 2 && soldier.y == horse.y + 1) || (soldier.x == horse.x - 1 && soldier.y == horse.y + 2) || (soldier.x == horse.x && soldier.y == horse.y)) return;
-    if (soldier.x + 1 <= goal.x)
-    {
-        soldier.x++;
-        dfs();
-        soldier.x--;
-    }
-    if (soldier.y + 1 <= goal.y)
-    {
-        soldier.y++;
-        dfs();
-        soldier.y--;
-    }
-    return;
-}
+int horseX, horseY, goalX, goalY;
+int hx[9] = { 0, -2, -1, 1, 2, 2, 1, -1, -2 };
+int hy[9] = { 0, 1, 2, 2, 1, -1, -2, -2, -1 };
+bool h[40][40];
+long long chess[40][40];
 
 int main()
 {
-    scanf("%d%d%d%d", &goal.y, &goal.x, &horse.y, &horse.x);
-    dfs();
-    printf("%d", ans);
+    scanf("%d%d%d%d", &goalY, &goalX, &horseY, &horseX);
+    goalX += 2, goalY += 2, horseX += 2, horseY += 2;
+    for (int i = 0; i < 9; i++)
+        h[horseY + hy[i]][horseX + hx[i]] = 1;
+    for (int i = 2; i <= goalY; i++)
+    {
+        if (h[i][0]) break;
+        chess[i][0] = 1;
+    }
+    for (int i = 2; i <= goalX; i++)
+    {
+        if (h[0][i]) break;
+        chess[0][i] = 1;
+    }
+    for (int i = 2; i < goalY; i++)
+    {
+        for (int j = 2; j <= goalX; j++)
+        {
+            if (h[i][j]) continue;
+            chess[i][j] += chess[i - 1][j] + chess[i][j - 1];
+        }
+    }
+    printf("%d", chess[goalX][goalY]);
     return 0;
 }
