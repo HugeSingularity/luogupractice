@@ -12,17 +12,8 @@ int main()
     goalX += 2, goalY += 2, horseX += 2, horseY += 2;
     for (int i = 0; i < 9; i++)
         h[horseY + hy[i]][horseX + hx[i]] = 1;
+    chess[2][2] = 1;
     for (int i = 2; i <= goalY; i++)
-    {
-        if (h[i][0]) break;
-        chess[i][0] = 1;
-    }
-    for (int i = 2; i <= goalX; i++)
-    {
-        if (h[0][i]) break;
-        chess[0][i] = 1;
-    }
-    for (int i = 2; i < goalY; i++)
     {
         for (int j = 2; j <= goalX; j++)
         {
@@ -30,6 +21,6 @@ int main()
             chess[i][j] += chess[i - 1][j] + chess[i][j - 1];
         }
     }
-    printf("%d", chess[goalX][goalY]);
+    printf("%lld", chess[goalY][goalX]);
     return 0;
 }
