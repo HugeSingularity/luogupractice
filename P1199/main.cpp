@@ -1,7 +1,10 @@
 ﻿#include<cstdio>
 #include<algorithm>
-using std::sort;
+
+using namespace std;
+
 int a[510][510];
+
 int main()
 {
     int n;
@@ -16,8 +19,11 @@ int main()
     for (int i = 1; i <= n; i++)
     {
         sort(a[i] + 1, a[i] + 1 + n);
-        ans = ans > a[i][n - 1] ? ans : a[i][n - 1];//选出排名第二中最大的那个
+        if (ans < a[i][n - 1])
+        {
+            ans = a[i][n - 1];
+        }
     }
-    printf("1\n%d\n", ans);//一定有解
+    printf("1\n%d", ans);
     return 0;
 }
